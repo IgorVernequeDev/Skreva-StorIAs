@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Resultado{% endblock %}
+
+{% block content %}
+{% if resultado %}
+  <h2>Resultado da Avaliação</h2>
+  <div>
+    {% for linha in resultado.split('\n') %}
+      <p><strong>{{ linha }}</strong></p>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

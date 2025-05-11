@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Início - Skreva HistorIAs{% endblock %}
+
+{% block content %}
+<h1>Pronto pra começar?</h1>
+<div>
+    <p>Gere sua frase aleatória!</p>
+    <a href="{{ url_for('main.gerar_frase') }}">
+        <button type="submit">Gerar Frase</button>
+    </a>
+</div>
+
+{% if frase %}
+<p>Frase gerada: {{ frase }}</p>
+<p>Ótimo! Agora vamos criar sua história.</p>
+<form action="{{ url_for('main.resultado') }}" method="POST">
+    <textarea name="historia" rows="10" cols="50" maxlength="2000" placeholder="Escreva sua história aqui..."></textarea>
+    <button type="submit">Enviar</button>
+</form>
+{% endif %}
+
+{% endblock %}
