@@ -5,11 +5,12 @@ main = Blueprint('main', __name__)
 
 client = OpenAI(
 base_url="https://openrouter.ai/api/v1",
-api_key="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",
+api_key="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",
 )
 
 @main.route('/')
 def index():
+    session.pop('frase', None)
     return render_template('index.html')
 
 @main.route('/gerar_frase')
@@ -19,7 +20,7 @@ def gerar_frase():
             model="openai/gpt-4.1",
             prompt="Crie uma frase bem curta, engraçada e irônica. A frase deve ter até 10 palavras e fazer sentido. Não adicione explicações, apenas a frase.",
             max_tokens=25,
-            temperature=0.9
+            temperature=1.4
         )
         frase_gerada = resposta.choices[0].text.strip()
         session['frase'] = frase_gerada
@@ -42,7 +43,7 @@ def resultado():
 
     resultado = client.completions.create(
         model="openai/gpt-4.1",
-        prompt=f"De acordo com a história: {historia}, gostaria que você avaliasse a história rigorosamente em alguns pontos: 1) Coerência, 2) Engraçado/Divertido, 3) Criatividade, 4) Ortografia, 5) Moral ou mensagem, 6) Relação com a frase: {frase} A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 1) Coerência: 8 - Pois é uma leitura fácil e não é confusa. 2) Engraçado/Divertido: 9 - Pois faz uso de ironia e humor de forma leve e engraçada. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: Média final: 8)",
+        prompt=f"De acordo com a história: {historia}, gostaria que você avaliasse a história rigorosamente em alguns pontos: 📚 Coerência, 😂 Engraçado/Divertido, 🧠 Criatividade, 📝 Ortografia, 🎯 Moral ou mensagem, 🔗 Relação com a frase: {frase} A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. 😂 Engraçado/Divertido: 9 - Pois faz uso de ironia e humor de forma leve e engraçada. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8) APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS!",
         max_tokens=250,
         temperature=0
     )

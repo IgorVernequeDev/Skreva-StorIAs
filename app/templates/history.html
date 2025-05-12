@@ -4,18 +4,26 @@
 
 {% block content %}
 <h1>Pronto pra começar?</h1>
+<br>
 <div>
     <p>Gere sua frase aleatória!</p>
+    <br>
+    {% if not frase %}
     <a href="{{ url_for('main.gerar_frase') }}">
         <button type="submit">Gerar Frase</button>
     </a>
+    {% endif %}
 </div>
 
 {% if frase %}
-<p>Frase gerada: {{ frase }}</p>
+<h3>Frase gerada: {{ frase }}</h3>
+<br>
 <p>Ótimo! Agora vamos criar sua história.</p>
+<br>
 <form action="{{ url_for('main.resultado') }}" method="POST">
     <textarea name="historia" rows="10" cols="50" maxlength="2000" placeholder="Escreva sua história aqui..."></textarea>
+    <br>
+    <br>
     <button type="submit">Enviar</button>
 </form>
 {% endif %}

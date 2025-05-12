@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Skreva HistorIAs{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
-        <h1>ISkreva HistorIAs</h1>
+        <h1>Skreva HistorIAs</h1>
         <nav>
             <a href="/">Início</a>
-            <a href="/gerar_frase">Gerar Frase</a>
-            <!-- Adicione mais links conforme necessário -->
         </nav>
     </header>
 
@@ -25,4 +28,5 @@
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

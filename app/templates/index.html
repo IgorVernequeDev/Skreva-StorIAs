@@ -3,25 +3,30 @@
 {% block title %}Início - Skreva HistorIAs{% endblock %}
 
 {% block content %}
-    <h2>Bem-vindo ao Skreva HistorIAs!</h2>
-    <p>
-        Aqui, a inteligência artificial irá te dar uma <strong>frase curta e engraçada</strong> para inspirar sua criatividade.
-        Depois disso, você poderá escrever uma história com base nessa frase — e ao final, a IA irá <strong>avaliar sua história</strong> com base em critérios como:
-    </p>
-    <ul>
-        <li>📚 Coerência</li>
-        <li>😂 Engraçado/divertido</li>
-        <li>🧠 Criatividade</li>
-        <li>📝 Ortografia</li>
-        <li>🎯 Moral ou mensagem</li>
-        <li>🔗 Relação com a frase</li>
-    </ul>
+<h2>Bem-vindo ao Skreva HistorIAs!</h2>
+<br>
+<p>
+    Aqui, a inteligência artificial irá te dar uma <strong>frase curta e engraçada</strong> para inspirar sua
+    criatividade.
+    Depois disso, você poderá escrever uma história com base nessa frase — e ao final, a IA irá <strong>avaliar sua
+        história</strong> com base em critérios como:
+</p>
+<br>
+<ul>
+    <li>- 📚 Coerência</li>
+    <li>- 😂 Engraçado/divertido</li>
+    <li>- 🧠 Criatividade</li>
+    <li>- 📝 Ortografia</li>
+    <li>- 🎯 Moral ou mensagem</li>
+    <li>- 🔗 Relação com a frase</li>
+</ul>
 
-    <p>
-        Clique no botão abaixo para começar sua jornada!
-    </p>
+<br>
+<p>Clique no botão abaixo para começar sua jornada!</p>
 
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="{{ url_for('main.history') }}" class="botao-comecar">Começar Agora</a>
-    </div>
+<div style="text-align: center; margin-top: 30px;">
+    <a href="{{ url_for('main.history') }}">
+        <button class="botao-comecar">Começar Agora</button>
+    </a>
+</div>
 {% endblock %}

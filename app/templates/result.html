@@ -5,9 +5,10 @@
 {% block content %}
 {% if resultado %}
   <h2>Resultado da Avaliação</h2>
+  <br>
   <div>
     {% for linha in resultado.split('\n') %}
-      <p><strong>{{ linha }}</strong></p>
+      <p><strong>{{ linha }}</strong></p><br>
     {% endfor %}
   </div>
 {% endif %}
