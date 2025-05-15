@@ -1,28 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}Início - Skreva HistorIAs{% endblock %}
+{% block title %}Início - Skreva StorIAs{% endblock %}
 
 {% block content %}
-<h2>Bem-vindo ao Skreva HistorIAs!</h2>
+<div id="divTitulo">
+    <h2>Bem-vindo ao Skreva StorIAs!</h2>
+    <p style="font-size: 20px;">Dificuldade: Normal</p>
+</div>
 <br>
-<p>
-    Aqui, a inteligência artificial irá te dar uma <strong>frase curta e engraçada</strong> para inspirar sua
+<p style="font-size: 18px;">
+    Aqui, a inteligência artificial irá te dar uma <strong>frase curta e aleatória</strong> para inspirar sua
     criatividade.
-    Depois disso, você poderá escrever uma história com base nessa frase — e ao final, a IA irá <strong>avaliar sua
-        história</strong> com base em critérios como:
+    Depois disso, você irá escrever uma história com base nessa frase e com base nos <strong>5 elementos da narrativa: enredo, narrador, personagens, tempo e espaço</strong>. E ao final, a IA irá avaliar sua história <strong>rigorosamente</strong>, com base em critérios como:
 </p>
 <br>
-<ul>
+<ul style="font-size: 20px;">
     <li>- 📚 Coerência</li>
-    <li>- 😂 Engraçado/divertido</li>
     <li>- 🧠 Criatividade</li>
-    <li>- 📝 Ortografia</li>
+    <li>- 📝 Qualidade gramatical e textual</li>
     <li>- 🎯 Moral ou mensagem</li>
     <li>- 🔗 Relação com a frase</li>
 </ul>
 
 <br>
-<p>Clique no botão abaixo para começar sua jornada!</p>
+<p style="font-size: 20px;">Clique no botão abaixo para começar sua jornada!</p>
 
 <div style="text-align: center; margin-top: 30px;">
     <a href="{{ url_for('main.history') }}">

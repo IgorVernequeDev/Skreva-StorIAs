@@ -6,15 +6,14 @@
     font-family: "Montserrat", sans-serif;
 }
 
-
 body {
     background-color: #f5f5f5;
     color: #333;
 }
 
-/* Container principal */
 .container {
     max-width: 800px;
+    height: 70vh;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
@@ -22,7 +21,6 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Header */
 header {
     background-color: #4a90e2;
     color: white;
@@ -61,10 +59,39 @@ button {
 
 button:hover {
     background-color: #357ab8;
-    transform: scale(1.05);
-    transition: transform 0.3s;
+    transform: scale(1.1);
+    transition: transform 0.5s;
 }
 
+#divTitulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#settingsDiv {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    align-items: center;
+}
+
+#configDiv {
+    display: flex;
+    justify-content: space-around;
+    margin: 4%;
+    width: 100%;
+}
+
+select {
+    width: 50%;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+}
 
 .botao-comecar {
     display: inline-block;
@@ -98,8 +125,9 @@ textarea::placeholder {
     opacity: 1;
 }
 
-/* Footer */
 footer {
+    display: flex;
+    justify-content: space-around;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -109,4 +137,5 @@ footer {
     font-size: 14px;
     margin-top: 40px;
     color: #555;
+    padding: 1.5%;
 }

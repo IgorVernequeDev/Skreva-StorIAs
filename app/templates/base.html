@@ -3,18 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Skreva HistorIAs{% endblock %}</title>
+    <title>{% block title %}Skreva StorIAs{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <h1>Skreva HistorIAs</h1>
+        <h1>Skreva StorIAs</h1>
         <nav>
             <a href="/">Início</a>
+            <a href="/melhoresStorIAs">Melhores histórias</a>
+            <a href="/historico">Histórico</a>
+            <a href="/configuracoes">Configurações</a>
         </nav>
     </header>
 
@@ -23,9 +29,18 @@
     </main>
 
     <footer>
-        <p>&copy; Criado por Igor</p>
+        <p>Conteúdo gerado por IA - Nada produzido aqui tem relação com a vida real.</p>
+        <p>Desenvolvido por Igor Verneque</p>
+        <p>Skreva StorIAs v2.0</p>
+        <p>LinkedIn: </p>
+        <a href="https://www.linkedin.com/in/igor-verneque/">
+            <img src="/app/static/img/linkedin.png" alt="">
+        </a>
+        <p>GitHub: </p>
+        <a href="https://github.com/IgorVernequeDev">
+            <img src="/app/static/img/github.png" alt="">
+        </a>
     </footer>
-
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 

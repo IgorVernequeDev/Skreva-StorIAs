@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Configurações - Skreva HistorIAs{% endblock %}
+
+{% block content %}
+
+<div style="text-align: center;">
+    <h1>Configurações</h1>
+</div>
+<br>
+
+<div id="settingsDiv">
+    <div id="configDiv">
+        <h2 onclick="">Nível de Dificuldade:</h2>
+        <select name="dificuldade" id="dificuldade">
+            <option value="facil">Fácil</option>
+            <option value="media">Média</option>
+            <option value="difícil">Difícil</option>
+        </select>
+    </div>
+    
+    <div id="configDiv">
+        <h2>Tempo para escrita:</h2>
+        <select name="tempo" id="tempo">
+            <option value="1min">1 minuto</option>
+            <option value="2min">2 minutos</option>
+            <option value="3min">3 minutos</option>
+        </select>
+    </div>
+    
+    <div id="configDiv">
+        <h2>Limite de caracteres:</h2>
+        <select name="limite" id="limite">
+            <option value="3000c">3000 Caracteres</option>
+            <option value="2000c">2000 Caracteres</option>
+            <option value="">1000 Caracteres</option>
+        </select>
+    </div>
+    
+    <div id="configDiv">
+        <h2>Criatividade da IA</h2>
+        <select name="criatividade" id="criatividade">
+            <option value="baixa">Baixa</option>
+            <option value="media">Média</option>
+            <option value="alta">Alta</option>
+        </select>
+    </div>
+</div>
+
+{% endblock %}

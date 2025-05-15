@@ -1,18 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Início - Skreva HistorIAs{% endblock %}
+{% block title %}Início - Skreva StorIAs{% endblock %}
 
 {% block content %}
-<h1>Pronto pra começar?</h1>
-<br>
-<div>
-    <p>Gere sua frase aleatória!</p>
+{% if not frase %}
+<div id="divFraseInicial">
+    <h1>Pronto pra começar?</h1>
     <br>
-    {% if not frase %}
+    <p>Gere sua frase aleatória!</p>
+</div>
+<div>
+    <br>
+
     <a href="{{ url_for('main.gerar_frase') }}">
         <button type="submit">Gerar Frase</button>
     </a>
     {% endif %}
+    <h2 id="timerText" style="display: none; text-align: center;">⏳ Tempo restante: <span id="timer">00:00</span></h2>
+    <br>
 </div>
 
 {% if frase %}
@@ -20,11 +25,15 @@
 <br>
 <p>Ótimo! Agora vamos criar sua história.</p>
 <br>
-<form action="{{ url_for('main.resultado') }}" method="POST">
-    <textarea name="historia" rows="10" cols="50" maxlength="2000" placeholder="Escreva sua história aqui..."></textarea>
+<button onclick="comecarHistoria()" id="comecarHistoria">Começar</button>
+<form id="formHistoria" style="display: none;" action="{{ url_for('main.resultado') }}" method="POST">
+    <textarea name="historia" id="historia" rows="10" cols="50" maxlength="2000"
+        placeholder="Escreva sua história aqui..."></textarea>
     <br>
     <br>
-    <button type="submit">Enviar</button>
+    <div style="text-align: center;">
+        <button id="enviarHistoria" type="submit">Enviar</button>
+    </div>
 </form>
 {% endif %}
 
