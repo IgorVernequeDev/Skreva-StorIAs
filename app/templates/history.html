@@ -16,18 +16,25 @@
         <button type="submit">Gerar Frase</button>
     </a>
     {% endif %}
-    <h2 id="timerText" style="display: none; text-align: center;">⏳ Tempo restante: <span id="timer">00:00</span></h2>
+    <div id="divTitulo">
+        <h2 id="timerText" style="display: none; text-align: center;">⏳ Tempo restante: <span id="timer">00:00</span></h2>
+        <h3 id="caracteresRestantes" style="display: none;">Caracteres restantes:<span id="contador"> {{ caracteres }}</span></h3>
+    </div>
     <br>
 </div>
 
 {% if frase %}
 <h3>Frase gerada: {{ frase }}</h3>
 <br>
+
 <p>Ótimo! Agora vamos criar sua história.</p>
 <br>
+
 <button onclick="comecarHistoria()" id="comecarHistoria">Começar</button>
+<br>
+
 <form id="formHistoria" style="display: none;" action="{{ url_for('main.resultado') }}" method="POST">
-    <textarea name="historia" id="historia" rows="10" cols="50" maxlength="2000"
+    <textarea name="historia" id="historia" rows="10" cols="50" maxlength="{{ caracteres }}"
         placeholder="Escreva sua história aqui..."></textarea>
     <br>
     <br>
@@ -35,6 +42,37 @@
         <button id="enviarHistoria" type="submit">Enviar</button>
     </div>
 </form>
+
+<script>
+    let tempoRestante = "{{ tempo }}"
+    const timerDisplay = document.getElementById("timer");
+    const textarea = document.querySelector('textarea');
+    const contador = document.getElementById('contador');
+    const limite = parseInt(textarea.getAttribute('maxlength'));
+
+    function atualizarTimer() {
+        const minutos = Math.floor(tempoRestante / 60).toString().padStart(2, '0');
+        const segundos = (tempoRestante % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${minutos}:${segundos}`;
+
+        if (tempoRestante <= 0) {
+            clearInterval(intervalo);
+            textarea.readOnly = true;
+            timerDisplay.textContent = "Tempo esgotado!";
+        }
+
+        tempoRestante--;
+    }
+
+    const intervalo = setInterval(atualizarTimer, 1000);
+    atualizarTimer();
+
+    textarea.addEventListener('input', () => {
+        const restante =  limite - textarea.value.length;
+        contador.textContent = " " + restante;
+    });
+
+</script>
 {% endif %}
 
 {% endblock %}

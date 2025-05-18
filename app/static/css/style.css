@@ -24,23 +24,24 @@ body {
 header {
     background-color: #4a90e2;
     color: white;
-    padding: 15px 0;
     text-align: center;
+    padding: 2%;
 }
 
-header nav {
-    margin-top: 10px;
-}
 
 header a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
-    font-weight: bold;
+    margin: 1%;
+    font-size: 18px;
 }
 
-header a:hover {
+header nav a:hover {
     text-decoration: underline;
+}
+
+nav {
+    margin-top: 1%;
 }
 
 ul {
@@ -79,7 +80,7 @@ button:hover {
 #configDiv {
     display: flex;
     justify-content: space-around;
-    margin: 4%;
+    margin: 3%;
     width: 100%;
 }
 

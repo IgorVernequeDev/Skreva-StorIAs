@@ -7,33 +7,33 @@ function comecarHistoria() {
 
     timerText = document.getElementById("timerText");
     timerText.style.display = "block";
-    
-    let tempoRestante = 30;
-    const timerDisplay = document.getElementById("timer");
-    const textarea = document.querySelector('textarea');
 
-    function atualizarTimer() {
-        const minutos = Math.floor(tempoRestante / 60).toString().padStart(2, '0');
-        const segundos = (tempoRestante % 60).toString().padStart(2, '0');
-        timerDisplay.textContent = `${minutos}:${segundos}`;
-
-        if (tempoRestante <= 0) {
-            clearInterval(intervalo);
-            textarea.readOnly = true;
-            timerDisplay.textContent = "Tempo esgotado!";
-        }
-
-        tempoRestante--;
-    }
-
-    const intervalo = setInterval(atualizarTimer, 1000);
-    atualizarTimer();
+    caracteresRestantes = document.getElementById("caracteresRestantes");
+    caracteresRestantes.style.display = "block";
 };
 
-function dificuldade() {
-    alert('oi')
-    selectDificuldade = document.getElementById("dificuldade");
-    if (selectDificuldade.value == "facil") {
-        alert('Você escolheu a dificuldade fácil! Boa sorte!');
+function selecionarDificuldade() {
+    const dificuldade = document.getElementById("dificuldade").value;
+    const tempo = document.getElementById("tempo");
+    const caracteres = document.getElementById("caracteres");
+
+    tempo.disabled = true;
+    caracteres.disabled = true;
+
+    if (dificuldade === "Fácil") {
+        tempo.value = "5min";
+        caracteres.value = "2000";
+
+    } else if (dificuldade === "Médio") {
+        tempo.value = "180";
+        caracteres.value = "1000";
+
+    } else if (dificuldade === "Difícil") {
+        tempo.value = "120";
+        caracteres.value = "500";
+
+    } else {
+        tempo.disabled = false;
+        caracteres.disabled = false;
     }
 }

@@ -4,12 +4,15 @@
 
 {% block content %}
 {% if resultado %}
-  <h2>Resultado da Avaliação</h2>
-  <br>
-  <div>
-    {% for linha in resultado.split('\n') %}
-      <p><strong>{{ linha }}</strong></p><br>
-    {% endfor %}
+<h2>Resultado da Avaliação</h2>
+<br>
+<div>
+  {% for linha in resultado.split('\n') %}
+  <p><strong>{{ linha }}</strong></p><br>
+  {% endfor %}
+  <div style="text-align: center;">
+    <a href="/"><button>Voltar</button></a>
   </div>
+</div>
 {% endif %}
 {% endblock %}
