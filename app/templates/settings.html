@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Configurações - Skreva HistorIAs{% endblock %}
+{% block title %}Configurações - Skreva StorIAs{% endblock %}
 
 {% block content %}
 
@@ -34,9 +34,9 @@
         <div id="configDiv">
             <h2>Limite de caracteres:</h2>
             <select name="caracteres" id="caracteres" {{ 'disabled' if dificuldade != 'Personalizada' }}>
-                <option value="500" {{ 'selected' if dificuldade == 'Difícil' }}>500 caracteres</option>
-                <option value="1000" {{ 'selected' if dificuldade == 'Médio' }}>1000 caracteres</option>
-                <option value="2000" {{ 'selected' if dificuldade == 'Fácil' }}>2000 caracteres</option>
+                <option value="200" {{ 'selected' if dificuldade == 'Difícil' }}>200 caracteres</option>
+                <option value="300" {{ 'selected' if dificuldade == 'Médio' }}>300 caracteres</option>
+                <option value="500" {{ 'selected' if dificuldade == 'Fácil' }}>500 caracteres</option>
             </select>
         </div>
 

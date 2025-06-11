@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Histórias - Skreva StorIAs{% endblock %}
+
+{% block content %}
+<a href="/historias"><button>Voltar</button></a>
+<br>
+<br>
+<h4>Frase: {{ historia.frase }}</h4>
+<br>
+<div class="titulo">{{ historia.frase }}</div>
+<div class="texto">{{ historia.historia }}</div>
+<div class="avaliacoes">
+    Diversão: {{ historia.diversao }} |
+    Coerência: {{ historia.coerencia }} |
+    Qualidade gramatical: {{ historia.gramatica }} |
+    Moral: {{ historia.moral }} |
+    Relação com a frase: {{ historia.relacaofrase }} |
+    <strong>Média: {{ historia.media }}</strong>
+</div>
+
+{% endblock %}

@@ -21,18 +21,21 @@ function selecionarDificuldade() {
     caracteres.disabled = true;
 
     if (dificuldade === "Fácil") {
-        tempo.value = "5min";
-        caracteres.value = "2000";
-
-    } else if (dificuldade === "Médio") {
-        tempo.value = "180";
-        caracteres.value = "1000";
-
-    } else if (dificuldade === "Difícil") {
-        tempo.value = "120";
+        tempo.value = "300";
         caracteres.value = "500";
 
-    } else {
+    } 
+    else if (dificuldade === "Médio") {
+        tempo.value = "180";
+        caracteres.value = "300";
+
+    } 
+    else if (dificuldade === "Difícil") {
+        tempo.value = "120";
+        caracteres.value = "200";
+
+    } 
+    else {
         tempo.disabled = false;
         caracteres.disabled = false;
     }
