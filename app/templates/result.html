@@ -1,31 +1,20 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}Melhores Histórias - Skreva StorIAs{% endblock %}
+{% block title %}Resultado - Skreva StorIAs{% endblock %}
 
 {% block content %}
-    <div style="display: flex; width: 100%; justify-content: space-around; align-items: center;">
-        <h1>🏆 Melhores Histórias</h1>
-        <p>Clique para vê-las individualmente!</p>
-    </div>
-    <br>
-    {% for historia in historias %}
-        <a href="/historia/{{ historia.id }}" style="color: inherit;">
-            <div class="historia">
-                <h4>Frase: {{ historia.frase }}</h4>
-                <br>
-                <p>{{ historia.historia }}</p>
-                <div class="avaliacoes">
-                    Diversão: {{ historia.diversao }} |
-                    Coerência: {{ historia.coerencia }} |
-                    Qualidade gramatical: {{ historia.gramatica }} |
-                    Moral: {{ historia.moral }} |
-                    Relação com a frase: {{ historia.relacaofrase }} |
-                    <strong>Média: {{ historia.media }}</strong>
-                </div>
-            </div>
-        </a>
-    {% else %}
-        <p>Nenhuma história criada ainda. Comece criando uma!</p>
-    {% endfor %}
+{% if resultado %}
+<h2>Resultado da Avaliação</h2>
+<br>
+<div>
+    {% for linha in resultado.split('\n') %}
+    <p><strong>{{ linha }}</strong></p><br>
+{% endfor %}
+
+{% endif %}
+
+<div style="display: flex; justify-content: center;">
+    <button><a style="color: inherit;" href="/">Voltar</a></button>
+</div>
 
 {% endblock %}

@@ -44,12 +44,15 @@
 </form>
 
 <script>
-    let tempoRestante = "{{ tempo }}"
+    let tempoRestante = parseInt("{{ tempo }}"); // Agora é let, pois será decrementado
+
     const timerDisplay = document.getElementById("timer");
     const textarea = document.querySelector('textarea');
     const contador = document.getElementById('contador');
     const limite = parseInt(textarea.getAttribute('maxlength'));
+    const buttonEnviarHistoria = document.getElementById('enviarHistoria');
 
+    // Timer
     function atualizarTimer() {
         const minutos = Math.floor(tempoRestante / 60).toString().padStart(2, '0');
         const segundos = (tempoRestante % 60).toString().padStart(2, '0');
@@ -67,12 +70,40 @@
     const intervalo = setInterval(atualizarTimer, 1000);
     atualizarTimer();
 
+    // Contador de caracteres
     textarea.addEventListener('input', () => {
-        const restante =  limite - textarea.value.length;
+        const restante = limite - textarea.value.length;
         contador.textContent = " " + restante;
     });
 
+    // Impedir envio se estiver vazio
+    buttonEnviarHistoria.addEventListener('click', (e) => {
+        if (textarea.value.trim() === "") {
+            e.preventDefault();
+            alert("Você ainda não escreveu sua história!");
+        }
+    });
+
+    // Bloquear cópia da frase
+    const fraseTexto = document.querySelector('h3');
+    if (fraseTexto) {
+        fraseTexto.addEventListener('copy', (e) => e.preventDefault());
+        fraseTexto.addEventListener('cut', (e) => e.preventDefault());
+        fraseTexto.addEventListener('contextmenu', (e) => e.preventDefault());
+        fraseTexto.setAttribute('draggable', 'false');
+    }
+
+    // Botão "Começar" revela o formulário
+    function comecarHistoria() {
+        document.getElementById('formHistoria').style.display = 'block';
+        document.getElementById('comecarHistoria').style.display = 'none';
+        document.getElementById('timerText').style.display = 'block';
+        document.getElementById('caracteresRestantes').style.display = 'block';
+    }
+
+    window.comecarHistoria = comecarHistoria;
 </script>
+
 {% endif %}
 
 {% endblock %}

@@ -3,13 +3,12 @@ from openai import OpenAI
 from app import db
 from app.models import Historias
 import re
-# from app.openrouter_client import client
 
 main = Blueprint('main', __name__)
 
 client = OpenAI(
 base_url="https://openrouter.ai/api/v1",
-api_key="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",
+api_key="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",
 )
 
 @main.route('/teste')
@@ -65,9 +64,6 @@ def history():
         caracteres = session.get('caracteres')
         tempo = session.get('tempo')
         
-        print(f"caracteres: {caracteres}")
-        print(f"tempo: {tempo}")
-        
     return render_template('history.html', frase=frase, dificuldade=session['dificuldade'], caracteres=caracteres, tempo=tempo)
 
 @main.route('/resultado', methods=['POST'])
@@ -77,7 +73,7 @@ def resultado():
 
     resultado = client.completions.create(
         model="openai/gpt-4.1",
-        prompt=f"De acordo com a história: {historia}, gostaria que você a avaliasse rigorosamente, como se fosse uma prova de faculdade, a história deve ter começo, meio e fim. Com introdução, desenvolvimento e conclusão. Avalie-a de acordo com os 5 elementos da narrativa e se ela se encaixa no gênero história. Leve em consideração esses pontos: 📚 Coerência, 🧠 Criatividade, 📝 Qualidade gramatical e textual, 🎯 Moral ou mensagem e 🔗 Relação com a frase: {frase}. A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8), na hora de avaliar a relação com a frase, faça assim: '🔗 Relação com a frase: 8' e não apenas o emoji. APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS! (informalidade e gírias não descontam a nota). Se não houver história, apenas diga: 'Você não enviou nada... Tente denovo, por favor.'",
+        prompt=f"De acordo com a história: {historia}, gostaria que você a avaliasse rigorosamente, como se fosse uma prova de faculdade, a história deve ter começo, meio e fim. Com introdução, desenvolvimento e conclusão. Avalie-a de acordo com os 5 elementos da narrativa e se ela se encaixa no gênero história. Leve em consideração esses pontos: 📚 Coerência, 🧠 Criatividade, 📝 Qualidade gramatical e textual, 🎯 Moral ou mensagem e 🔗 Relação com a frase: {frase}. A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8), na hora de avaliar a relação com a frase, faça assim: '🔗 Relação com a frase: 8' e não apenas o emoji. APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS! (informalidade e gírias não descontam a nota). Se não houver história, apenas diga: 'Você não enviou uma história... Tente denovo, por favor.'",
         max_tokens=300,
         temperature=0
     )
@@ -117,8 +113,10 @@ def resultado():
         media=media_final,
         frase=frase
     )
-    db.session.add(nova_historia)
-    db.session.commit()
+    
+    if resultado_texto != "Você não enviou uma história... Tente denovo, por favor.":
+        db.session.add(nova_historia)
+        db.session.commit()
 
     return render_template('result.html', frase=frase, historia=historia, resultado=resultado_texto, media=media_final, dificuldade=session.get('dificuldade', 'Médio'), nota_media=media.choices[0].text.strip())
     
@@ -151,6 +149,11 @@ def historias_salvas():
 def historia(id):
     historia = Historias.query.get_or_404(id)
     return render_template('storia.html', historia=historia)
+
+@main.route('/melhoresStorIAs')
+def melhores_historias():
+    historias = Historias.query.order_by(db.cast(Historias.media, db.Float).desc()).limit(3).all()
+    return render_template('beststories.html', historias=historias)
 
 @main.route('/deletar_historia/<int:id>')
 def deletar_historia(id):
