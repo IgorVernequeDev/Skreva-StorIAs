@@ -1,17 +1,3 @@
-function comecarHistoria() {
-    formHistoria = document.getElementById("formHistoria");
-    formHistoria.style.display = "block";
-
-    comecarHistoria = document.getElementById("comecarHistoria");
-    comecarHistoria.style.display = "none";
-
-    timerText = document.getElementById("timerText");
-    timerText.style.display = "block";
-
-    caracteresRestantes = document.getElementById("caracteresRestantes");
-    caracteresRestantes.style.display = "block";
-};
-
 function selecionarDificuldade() {
     const dificuldade = document.getElementById("dificuldade").value;
     const tempo = document.getElementById("tempo");

@@ -17,8 +17,10 @@
     </a>
     {% endif %}
     <div id="divTitulo">
-        <h2 id="timerText" style="display: none; text-align: center;">⏳ Tempo restante: <span id="timer">00:00</span></h2>
-        <h3 id="caracteresRestantes" style="display: none;">Caracteres restantes:<span id="contador"> {{ caracteres }}</span></h3>
+        <h2 id="timerText" style="display: none; text-align: center;">⏳ Tempo restante: <span id="timer">00:00</span>
+        </h2>
+        <h3 id="caracteresRestantes" style="display: none;">Caracteres restantes:<span id="contador"> {{ caracteres
+                }}</span></h3>
     </div>
     <br>
 </div>
@@ -44,39 +46,57 @@
 </form>
 
 <script>
-    let tempoRestante = parseInt("{{ tempo }}"); // Agora é let, pois será decrementado
+    function comecarHistoria() {
 
-    const timerDisplay = document.getElementById("timer");
-    const textarea = document.querySelector('textarea');
-    const contador = document.getElementById('contador');
-    const limite = parseInt(textarea.getAttribute('maxlength'));
-    const buttonEnviarHistoria = document.getElementById('enviarHistoria');
+        document.getElementById('formHistoria').style.display = 'block';
+        document.getElementById('comecarHistoria').style.display = 'none';
+        document.getElementById('timerText').style.display = 'block';
+        document.getElementById('caracteresRestantes').style.display = 'block';
+        
+        let tempoRestante = parseInt("{{ tempo }}");
 
-    // Timer
-    function atualizarTimer() {
-        const minutos = Math.floor(tempoRestante / 60).toString().padStart(2, '0');
-        const segundos = (tempoRestante % 60).toString().padStart(2, '0');
-        timerDisplay.textContent = `${minutos}:${segundos}`;
+        const timerDisplay = document.getElementById("timer");
+        const textarea = document.querySelector('textarea');
+        const contador = document.getElementById('contador');
+        const limite = parseInt(textarea.getAttribute('maxlength'));
+        const buttonEnviarHistoria = document.getElementById('enviarHistoria');
 
-        if (tempoRestante <= 0) {
-            clearInterval(intervalo);
-            textarea.readOnly = true;
-            timerDisplay.textContent = "Tempo esgotado!";
+        function atualizarTimer() {
+            const minutos = Math.floor(tempoRestante / 60).toString().padStart(2, '0');
+            const segundos = (tempoRestante % 60).toString().padStart(2, '0');
+            timerDisplay.textContent = `${minutos}:${segundos}`;
+
+            if (tempoRestante <= 0) {
+                clearInterval(intervalo);
+                textarea.readOnly = true;
+                timerDisplay.textContent = "Tempo esgotado!";
+            }
+
+            tempoRestante--;
         }
 
-        tempoRestante--;
+        const intervalo = setInterval(atualizarTimer, 1000);
+        atualizarTimer();
+
+        textarea.addEventListener('input', () => {
+            const restante = limite - textarea.value.length;
+            contador.textContent = " " + restante;
+        });
+
+        formHistoria = document.getElementById("formHistoria");
+        formHistoria.style.display = "block";
+
+        comecarHistoria = document.getElementById("comecarHistoria");
+        comecarHistoria.style.display = "none";
+
+        timerText = document.getElementById("timerText");
+        timerText.style.display = "block";
+
+        caracteresRestantes = document.getElementById("caracteresRestantes");
+        caracteresRestantes.style.display = "block";
+
     }
 
-    const intervalo = setInterval(atualizarTimer, 1000);
-    atualizarTimer();
-
-    // Contador de caracteres
-    textarea.addEventListener('input', () => {
-        const restante = limite - textarea.value.length;
-        contador.textContent = " " + restante;
-    });
-
-    // Impedir envio se estiver vazio
     buttonEnviarHistoria.addEventListener('click', (e) => {
         if (textarea.value.trim() === "") {
             e.preventDefault();
@@ -84,21 +104,12 @@
         }
     });
 
-    // Bloquear cópia da frase
     const fraseTexto = document.querySelector('h3');
     if (fraseTexto) {
         fraseTexto.addEventListener('copy', (e) => e.preventDefault());
         fraseTexto.addEventListener('cut', (e) => e.preventDefault());
         fraseTexto.addEventListener('contextmenu', (e) => e.preventDefault());
         fraseTexto.setAttribute('draggable', 'false');
-    }
-
-    // Botão "Começar" revela o formulário
-    function comecarHistoria() {
-        document.getElementById('formHistoria').style.display = 'block';
-        document.getElementById('comecarHistoria').style.display = 'none';
-        document.getElementById('timerText').style.display = 'block';
-        document.getElementById('caracteresRestantes').style.display = 'block';
     }
 
     window.comecarHistoria = comecarHistoria;

@@ -17,12 +17,11 @@ body {
 }
 
 .container {
-    width: 800px;
-    max-width: 90%;
-    min-height: 65vh;
-    padding: 20px;
+    flex: 1;
+    min-width: 100%;
+    padding: 2%;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 2%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,7 +29,7 @@ header {
     background-color: #4a90e2;
     color: white;
     text-align: center;
-    padding: 2%;
+    padding: 1%;
     width: 100%;
 }
 
@@ -39,7 +38,6 @@ header a {
     color: white;
     text-decoration: none;
     margin: 1%;
-    font-size: 18px;
 }
 
 header nav a:hover {
@@ -58,10 +56,9 @@ button {
     background-color: #4a90e2;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 1% 2%;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
 }
 
 button:hover {
@@ -74,6 +71,10 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#divTitulo img:hover {
+    cursor: pointer;
 }
 
 #settingsDiv {
@@ -99,17 +100,6 @@ select {
     color: white;
     font-size: 15px;
     padding: 5px;
-}
-
-.botao-comecar {
-    display: inline-block;
-    background-color: #4a90e2;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 15px;
-    transition: background-color 0.3s;
 }
 
 textarea {
@@ -156,6 +146,7 @@ textarea::placeholder {
 
 footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     background-color: #eee;
     text-align: center;

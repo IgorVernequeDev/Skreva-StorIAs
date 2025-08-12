@@ -8,12 +8,8 @@ main = Blueprint('main', __name__)
 
 client = OpenAI(
 base_url="https://openrouter.ai/api/v1",
-api_key="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",
+api_key="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",
 )
-
-@main.route('/teste')
-def teste():
-    return "Rota de teste"
 
 @main.route('/')
 def index():
@@ -31,7 +27,7 @@ def gerar_frase():
     try:
         resposta = client.completions.create(
             model="openai/gpt-4.1",
-            prompt="Crie uma frase bem curta e aleatória que esteja dentro do contexto de uma história/conversa para que o usuário crie uma história em que essa frase se encaixe nela. A frase deve ter até 10 palavras e fazer sentido. Não adicione explicações, apenas a frase.",
+            prompt="Crie uma frase bem curta, engraçada e aleatória que esteja dentro do contexto de uma história/conversa para que o usuário crie uma história em que essa frase se encaixe nela. EXEMPLO:'Até que finalmente, eu descobri o que era ser um vilão de verdade', ou 'A vida é como uma caixa de chocolates, você nunca sabe o que vai encontrar'. A frase deve ter até 10 palavras e fazer sentido. Não adicione explicações, apenas a frase.",
             max_tokens=25,
             temperature=1.4
         )
@@ -73,7 +69,7 @@ def resultado():
 
     resultado = client.completions.create(
         model="openai/gpt-4.1",
-        prompt=f"De acordo com a história: {historia}, gostaria que você a avaliasse rigorosamente, como se fosse uma prova de faculdade, a história deve ter começo, meio e fim. Com introdução, desenvolvimento e conclusão. Avalie-a de acordo com os 5 elementos da narrativa e se ela se encaixa no gênero história. Leve em consideração esses pontos: 📚 Coerência, 🧠 Criatividade, 📝 Qualidade gramatical e textual, 🎯 Moral ou mensagem e 🔗 Relação com a frase: {frase}. A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8), na hora de avaliar a relação com a frase, faça assim: '🔗 Relação com a frase: 8' e não apenas o emoji. APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS! (informalidade e gírias não descontam a nota). Se não houver história, apenas diga: 'Você não enviou uma história... Tente denovo, por favor.'",
+        prompt=f"De acordo com a história: {historia}, gostaria que você a avaliasse rigorosamente, como se fosse uma prova de faculdade, a história deve ter começo, meio e fim. Com introdução, desenvolvimento e conclusão. Avalie-a de acordo com os 5 elementos da narrativa e se ela se encaixa no gênero história. Leve em consideração esses pontos: 📚 Coerência, 🧠 Criatividade, 📝 Qualidade gramatical e textual, 🎯 Moral ou mensagem e 🔗 Relação com a frase: {frase}. A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8), na hora de avaliar a relação com a frase, faça assim: '🔗 Relação com a frase: 8' e não apenas o emoji. APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS! (informalidade e gírias não descontam a nota). Se não houver história, apenas diga: 'Você não enviou uma história... Tente denovo, por favor.' Se a história conter palavras ofensivas/desrespeitoso, apenas diga: 'A história enviada contém conteúdo ofensivo e desrespeitoso. Não posso avaliá-la.'",
         max_tokens=300,
         temperature=0
     )
@@ -114,9 +110,10 @@ def resultado():
         frase=frase
     )
     
-    if resultado_texto != "Você não enviou uma história... Tente denovo, por favor.":
+    if "Você não enviou uma história" not in resultado_texto and "ofensivo e desrespeitoso" not in resultado_texto:
         db.session.add(nova_historia)
         db.session.commit()
+
 
     return render_template('result.html', frase=frase, historia=historia, resultado=resultado_texto, media=media_final, dificuldade=session.get('dificuldade', 'Médio'), nota_media=media.choices[0].text.strip())
     
@@ -154,10 +151,3 @@ def historia(id):
 def melhores_historias():
     historias = Historias.query.order_by(db.cast(Historias.media, db.Float).desc()).limit(3).all()
     return render_template('beststories.html', historias=historias)
-
-@main.route('/deletar_historia/<int:id>')
-def deletar_historia(id):
-    historia = Historias.query.get_or_404(id)
-    db.session.delete(historia)
-    db.session.commit()
-    return redirect(url_for('main.historias_salvas'))

@@ -2,22 +2,20 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Skreva StorIAs{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="{{ url_for('static', filename='img/icon.png') }}" alt="" width="50" style="margin-right: 20px;">
-            <h1>Skreva StorIAs</h1>
+            <img src="{{ url_for('static', filename='img/icon.png') }}" alt="" width="50" style="margin-right: 1%;">
+            <h2>Skreva StorIAs</h2>
         </div>
         <nav>
             <a href="/">Início</a>
@@ -34,7 +32,7 @@
     <footer>
         <p>Conteúdo gerado por IA - Nada produzido aqui tem relação com a vida real.</p>
         <p>Desenvolvido por Igor Verneque</p>
-        <p>Skreva StorIAs v3.5</p>
+        <p>Skreva StorIAs v4.0</p>
         <div style="display: flex; align-items: center;">
             <p style="margin-right: 10px;">LinkedIn: </p>
             <a href="https://www.linkedin.com/in/igor-verneque/" target="blank">
@@ -50,7 +48,7 @@
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
