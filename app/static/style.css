@@ -80,7 +80,6 @@ button:hover {
 #settingsDiv {
     display: flex;
     flex-direction: column;
-    height: 50vh;
     justify-content: center;
     align-items: center;
 }
@@ -88,8 +87,8 @@ button:hover {
 #configDiv {
     display: flex;
     justify-content: space-around;
-    margin: 3%;
-    width: 100%;
+    margin: 1.5%;
+    width: 50%;
 }
 
 select {
@@ -98,7 +97,6 @@ select {
     border-radius: 8px;
     background-color: #4a90e2;
     color: white;
-    font-size: 15px;
     padding: 5px;
 }
 
@@ -154,4 +152,35 @@ footer {
     align-items: center;
     padding: 1%;
     width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header {
+        font-size: 1.2em;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .container {
+        padding: 5%;
+    }
+
+    button {
+        width: 25%;
+        padding: 1%;
+    }
+
+    select {
+        width: 50%;
+    }
+    #configDiv {
+        width: 100%;
+        padding: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

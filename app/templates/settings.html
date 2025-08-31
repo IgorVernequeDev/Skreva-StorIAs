@@ -6,6 +6,8 @@
 
 <div style="text-align: center;">
     <h1>Configurações</h1>
+     <br>
+    <p>Quer se desafiar? Experimente aumentar o nível de dificuldade!</p>
 </div>
 <br>
 
@@ -13,7 +15,7 @@
     <div id="settingsDiv">
 
         <div id="configDiv">
-            <h2>Nível de Dificuldade:</h2>
+            <h3>Nível de Dificuldade:</h3>
             <select onchange="selecionarDificuldade()" name="dificuldade" id="dificuldade">
                 <option value="Fácil" {{ 'selected' if dificuldade == 'Fácil' }}>Fácil</option>
                 <option value="Médio" {{ 'selected' if dificuldade == 'Médio' }}>Médio</option>
@@ -23,7 +25,7 @@
         </div>
 
         <div id="configDiv">
-            <h2>Tempo para escrita:</h2>
+            <h3>Tempo para escrita:</h3>
             <select name="tempo" id="tempo" {{ 'disabled' if dificuldade != 'Personalizada' }}>
                 <option value="120" {{ 'selected' if dificuldade == 'Difícil' }}>2 minutos</option>
                 <option value="180" {{ 'selected' if dificuldade == 'Médio' }}>3 minutos</option>
@@ -32,7 +34,7 @@
         </div>
 
         <div id="configDiv">
-            <h2>Limite de caracteres:</h2>
+            <h3>Limite de caracteres:</h3>
             <select name="caracteres" id="caracteres" {{ 'disabled' if dificuldade != 'Personalizada' }}>
                 <option value="200" {{ 'selected' if dificuldade == 'Difícil' }}>200 caracteres</option>
                 <option value="300" {{ 'selected' if dificuldade == 'Médio' }}>300 caracteres</option>
@@ -40,11 +42,9 @@
             </select>
         </div>
 
-        <br>
-        <div style="text-align: center;">
-            <button type="submit" style="padding: 20%;">Salvar</button>
+        <div style="text-align: center; width: 100%;">
+            <button type="submit">Salvar</button>
         </div>
-
     </div>
 </form>
 

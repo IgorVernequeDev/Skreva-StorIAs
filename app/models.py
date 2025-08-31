@@ -3,7 +3,6 @@ from . import db
 from datetime import datetime
 import pytz
 
-# Fuso horário de São Paulo
 fuso_sp = pytz.timezone('America/Sao_Paulo')
 
 def horario_sp():

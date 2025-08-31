@@ -8,7 +8,7 @@ main = Blueprint('main', __name__)
 
 client = OpenAI(
 base_url="https://openrouter.ai/api/v1",
-api_key="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",
+api_key="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",
 )
 
 @main.route('/')
@@ -69,7 +69,7 @@ def resultado():
 
     resultado = client.completions.create(
         model="openai/gpt-4.1",
-        prompt=f"De acordo com a história: {historia}, gostaria que você a avaliasse rigorosamente, como se fosse uma prova de faculdade, a história deve ter começo, meio e fim. Com introdução, desenvolvimento e conclusão. Avalie-a de acordo com os 5 elementos da narrativa e se ela se encaixa no gênero história. Leve em consideração esses pontos: 📚 Coerência, 🧠 Criatividade, 📝 Qualidade gramatical e textual, 🎯 Moral ou mensagem e 🔗 Relação com a frase: {frase}. A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8), na hora de avaliar a relação com a frase, faça assim: '🔗 Relação com a frase: 8' e não apenas o emoji. APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS! (informalidade e gírias não descontam a nota). Se não houver história, apenas diga: 'Você não enviou uma história... Tente denovo, por favor.' Se a história conter palavras ofensivas/desrespeitoso, apenas diga: 'A história enviada contém conteúdo ofensivo e desrespeitoso. Não posso avaliá-la.'",
+        prompt=f"De acordo com a história: {historia}, gostaria que você a avaliasse rigorosamente, a história deve ter começo, meio e fim. Com introdução, desenvolvimento e conclusão. Avalie-a de acordo com os 5 elementos da narrativa e se ela se encaixa no gênero história. Leve em consideração esses pontos: 📚 Coerência, 🧠 Criatividade, 📝 Qualidade gramatical e textual, 🎯 Moral ou mensagem e 🔗 Relação com a frase: {frase}. A avaliação deve ser feita em uma escala de 0 a 10, onde 0 é o pior e 10 é o melhor. Explique de forma bem breve o motivo da nota. Exemplo: 📚 Coerência: 8 - Pois é uma leitura fácil e não é confusa. (...) ATENÇÃO: TIRE OS '**' DA AVALIAÇÃO. no número 6, apenas diga a nota e o motivo sem repetir a frase. Depois, faça a média das notas (Ex: 🔢 Média final: 8), na hora de avaliar a relação com a frase, faça assim: '🔗 Relação com a frase: 8' e não apenas o emoji. APENAS DÊ AS NOTAS, A MÉDIA E OS MOTIVOS! Se não houver história, apenas diga: 'Você não enviou uma história... Tente denovo, por favor.' Se a história conter palavras ofensivas/desrespeitoso, apenas diga: 'A história enviada contém conteúdo ofensivo e desrespeitoso. Não posso avaliá-la.'",
         max_tokens=300,
         temperature=0
     )
