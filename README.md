@@ -19,6 +19,7 @@ O *Skreva StorIAs* fornece ao usuário uma **frase inspiradora gerada por IA**, 
 ![HTML](https://img.shields.io/badge/HTML5-markup-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-style-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-logic-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-database-003B57?style=for-the-badge\&logo=sqlite\&logoColor=white)
 
 ## 📦 Instalação
 
@@ -51,7 +52,7 @@ Depois disso, acesse no navegador:
 http://127.0.0.1:5000/
 ```
 
-🎯 Objetivo do projeto
+## 🎯 Objetivo do projeto
 
 * Criar uma experiência de escrita criativa assistida por IA
 
@@ -61,6 +62,6 @@ http://127.0.0.1:5000/
 
 * Unir backend em Flask com interface web interativa
 
-👨‍💻 Autor
+## 👨‍💻 Autor
 
-Desenvolvido por Igor Verneque
+Desenvolvido por **Igor Verneque**
