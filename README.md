@@ -2,7 +2,9 @@
 
 Aplicativo web que estimula a **criação de histórias criativas** com o auxílio de inteligência artificial.
 
-O *Skreva StorIAs* fornece ao usuário uma **frase inspiradora gerada por IA**, e a partir dela o usuário escreve uma narrativa baseada em cinco elementos da história (enredo, narrador, personagens, tempo e espaço). Ao final, o próprio sistema avalia a história com base em critérios como coerência, criatividade e qualidade textual. :contentReference[oaicite:1]{index=1}
+O *Skreva StorIAs* fornece ao usuário uma **frase inspiradora gerada por IA**, e a partir dela o usuário escreve uma narrativa baseada em cinco elementos da história (enredo, narrador, personagens, tempo e espaço). Ao final, o próprio sistema avalia a história com base em critérios como coerência, criatividade e qualidade textual.
+
+![Imagem de capa](app/static/img/fotocapa.png)
 
 ## 🚀 Funcionalidades
 
